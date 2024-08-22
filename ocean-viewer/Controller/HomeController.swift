@@ -27,9 +27,10 @@ class HomeController: UITableViewController {
     
     func fetchPictures() {
         let fm = FileManager.default
+        
         if let path = Bundle.main.resourcePath?.appending("/Pictures") {
             do {
-                let items = try fm.contentsOfDirectory(atPath: path)
+                let items = try fm.contentsOfDirectory(atPath: path).sorted()
                 for item in items {
                     if item.hasSuffix(".jpg") || item.hasSuffix(".jpeg") {
                         pictures.append(Picture(path: item))
